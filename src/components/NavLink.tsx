@@ -12,7 +12,6 @@ function NavLink(props: Props) {
   const router = useRouter();
   const isActive = router.pathname === props.href;
 
-
   return (
     <NextLink href={props.href}>
       <ChakraLink

@@ -1,45 +1,40 @@
-import NextLink from 'next/link'
-import { Text, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Input, DrawerFooter, Button, Link } from "@chakra-ui/react";
-import NavLink from './NavLink';
+import { Text, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Link } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import NextLink from "next/link"
 
 type Props = {
-    isOpen: boolean;
-    onOpen: () => void;
-    onClose: () => void
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void
 }
 
 export default function DrawerComponent(props: Props) {
+  const router = useRouter();
 
+  // const isActive = router.pathname === props.href;
   return (
     <Drawer
-        isOpen={props.isOpen}
-        placement='left'
-        onClose={props.onClose}
-        
+      isOpen={props.isOpen}
+      placement='left'
+      onClose={props.onClose}
     >
-    <DrawerOverlay />
-    <DrawerContent>
-      <DrawerCloseButton />
-      <DrawerHeader>Navigation Panel</DrawerHeader>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerCloseButton />
+        <DrawerHeader>Navigation Panel</DrawerHeader>
 
-      <DrawerBody display='flex' flexDirection='column'>
-        <NavLink href='/'> 
-          <Text >
+        <DrawerBody display='flex' flexDirection='column'>
+          <Link href='/'>
             Appointment
-          </Text>
-        </NavLink>
-        <NavLink href='/doctors'> 
-          <Text >
+          </Link>
+          <Link href='/doctors'>
             Doctors
-          </Text>
-        </NavLink>
-        <NavLink href='/clinics'> 
-          <Text >
+          </Link>
+          <Link href='/clinics'>
             Clinics
-          </Text>
-        </NavLink>
-      </DrawerBody>
-    </DrawerContent>
-  </Drawer>
+          </Link>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   )
 }

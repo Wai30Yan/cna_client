@@ -143,9 +143,9 @@ export default function Home(props: Props) {
 }
 
 export async function getStaticProps() {
-  const appt = await fetch('http://cnaserver-production.up.railway.app/appointments');
-  const doc = await fetch('http://cnaserver-production.up.railway.app/doctors');
-  const cln = await fetch('http://cnaserver-production.up.railway.app/clinics');
+  const appt = await fetch(`${process.env.NEXT_PUBLIC_URL}/appointments`);
+  const doc = await fetch(`${process.env.NEXT_PUBLIC_URL}/doctors`);
+  const cln = await fetch(`${process.env.NEXT_PUBLIC_URL}/clinics`);
   const appointments = await appt.json();
   const doctors = await doc.json();
   const clinics = await cln.json();
