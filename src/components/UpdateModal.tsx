@@ -21,6 +21,7 @@ type FormData = {
     date: string;
     from: string;
     to: string;
+    [key: string]: any;
 }
 
 function UpdateModal(props: Props) {
