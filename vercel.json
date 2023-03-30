@@ -1,8 +1,16 @@
 {
     "functions": {
-      "api/*.ts": {
+      "api/appointment.ts": {
+        "memory": 1024,
+        "maxDuration": 10
+      },
+      "api/doctor.ts": {
+        "memory": 1024,
+        "maxDuration": 10
+      },
+      "api/clinic.ts": {
         "memory": 1024,
         "maxDuration": 10
       }
     }
-  }
+}
