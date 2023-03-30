@@ -1,18 +1,15 @@
-import DrawerComponent from "@/components/Drawer";
-import Header from "@/components/Header";
 import AddModal from "@/components/Modals/Clinic/AddModal";
 import UpdateModal from "@/components/Modals/Clinic/UpdateModal";
 import OptionsBar from "@/components/OptionsBar";
 import { Clinic } from "@/models/clinic"
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useDisclosure, Text, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, Flex, IconButton } from "@chakra-ui/react"
-import { useState } from "react";
+import { useDisclosure, TableContainer, Flex, Table, TableCaption, Thead, Tr, Th, Tbody, Td, IconButton } from "@chakra-ui/react";
+import { useState } from 'react';
 
 type Props = {
     clinics: Clinic[];
 }
 function Clincs(props: Props) {
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isAddModalOpen, onOpen: onAddModalOpen, onClose: onAddModalClose } = useDisclosure();
     const { isOpen: isUpdateModalOpen, onOpen: onUpdateModalOpen, onClose: onUpdateModalClose } = useDisclosure();
     const clinics = props.clinics;
@@ -39,13 +36,13 @@ function Clincs(props: Props) {
             })
             const data = await res.json()
             console.log(data)
+            window.location.reload()
         } catch (err: any) {
             console.log(err)
         }
     }
     return (
         <>
-            <Header onOpen={onOpen} />
             <AddModal isOpen={isAddModalOpen} onOpen={onAddModalOpen} onClose={onAddModalClose} />
             {cln &&
                 <UpdateModal 
@@ -54,8 +51,7 @@ function Clincs(props: Props) {
                     onOpen={onUpdateModalOpen} 
                     onClose={onUpdateModalClose} />
             }
-            <DrawerComponent isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-            <OptionsBar title='Clinic List' btnName='Add Clinic' fn={onAddModalOpen} />
+            <OptionsBar btnName='Add Clinic' fn={onAddModalOpen} />
             <TableContainer display='flex' justifyContent='center' h='100%'>
                 <Flex flexDirection='row' alignItems='center' >
                     <Table variant='simple'>

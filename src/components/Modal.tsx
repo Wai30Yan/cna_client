@@ -2,7 +2,7 @@ import { Appointment } from '@/models/appointment';
 import { Clinic } from '@/models/clinic';
 import { Doctor } from '@/models/doctor';
 import { Text, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Modal, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Select, Box, Card, CardBody, Heading, Wrap } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 type Props = {
     isOpen: boolean;
@@ -90,6 +90,7 @@ function ModalComponent(props: Props) {
             });
             const data = await res.json()
             console.log(data)
+            window.location.reload()
         }
         catch (error) {
             console.log(error)

@@ -9,7 +9,6 @@ import {
     Link,
     Button,
     Heading,
-    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -49,7 +48,7 @@ export default function Auth() {
                     boxShadow={'lg'}
                     p={8}>
                     <Stack width='350px' spacing={4} height='400px'>
-                        <Heading fontSize={'4xl'}>Sign in as Admin</Heading>
+                        <Heading color='blue.600' fontSize={'4xl'}>Sign in as Admin</Heading>
                         <FormControl id="email">
                             <FormLabel>Email address</FormLabel>
                             <Input value={formData.email} onChange={handleChange} name='email' type="email" />

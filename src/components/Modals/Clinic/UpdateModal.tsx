@@ -10,7 +10,6 @@ type Props = {
 }
 
 function UpdateModal(props: Props) {
-    const btnRef = React.useRef(null)
     const [clinic, setClinic] = useState<Clinic>(props.clinic);
     const [newCln, setNewCln] = useState<Clinic>(props.clinic);
     const [isFormDataUpdated, setIsFormDataUpdated] = useState<boolean>(false);
@@ -51,6 +50,7 @@ function UpdateModal(props: Props) {
             });
             const data = await res.json()
             console.log(data)
+            window.location.reload()
         }
         catch (error) {
             console.log(error)
@@ -60,7 +60,6 @@ function UpdateModal(props: Props) {
     return (
         <Modal
             onClose={props.onClose}
-            finalFocusRef={btnRef}
             isOpen={props.isOpen}
         >
             <ModalOverlay />

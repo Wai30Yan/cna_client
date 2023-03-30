@@ -1,8 +1,6 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { useState } from 'react'
 import { Appointment } from '@/models/appointment'
-import { Flex, Text, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, Button, Stack, Container, Spacer, IconButton } from '@chakra-ui/react';
-import DrawerComponent from '@/components/Drawer';
-import Header from '@/components/Header';
+import { Flex, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, Spacer, IconButton } from '@chakra-ui/react';
 import { GetDate, GetTime } from '@/helpers/helpers';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { Doctor } from '@/models/doctor';
@@ -12,7 +10,7 @@ import UpdateModal from '@/components/UpdateModal';
 import OptionsBar from '@/components/OptionsBar';
 
 type Props = {
-  data : {
+  data: {
     appointments: Appointment[];
     doctors: Doctor[];
     clinics: Clinic[];
@@ -30,21 +28,18 @@ type FormData = {
 
 export default function Home(props: Props) {
   const [formData, setFormData] = useState<FormData>()
-  
-  
-  
-  const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onClose: onDrawerClose } = useDisclosure()
+  // const { isOpen: isDrawerOpen, onOpen: onDrawerOpen, onClose: onDrawerClose } = useDisclosure()
   const { isOpen: isModalOpen, onOpen: onModalOpen, onClose: onModalClose } = useDisclosure()
   const { isOpen: isUpdateModalOpen, onOpen: onUpdateModalOpen, onClose: onUpdateModalClose } = useDisclosure()
-  
+
   function handleEditClick(a: Appointment) {
     const data = {
       appointment_id: a.id,
       doctor_id: a.doctor_id,
       clinic_id: a.clinic_id,
       date: new Date(a.start_time).toISOString().substring(0, 10),
-      from: new Date(a.start_time).toLocaleTimeString([], { hour: '2-digit', minute:'2-digit', hour12: false }),
-      to: new Date(a.end_time).toLocaleTimeString([], { hour: '2-digit', minute:'2-digit', hour12: false }),
+      from: new Date(a.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }),
+      to: new Date(a.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }),
     }
 
     setFormData(data)
@@ -52,7 +47,7 @@ export default function Home(props: Props) {
   }
 
   async function handleDelete(a: Appointment): Promise<void> {
-    const res = await fetch('/api/appointment',{
+    const res = await fetch('/api/appointment', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -64,29 +59,26 @@ export default function Home(props: Props) {
       credentials: 'include',
     })
     const data = await res.json()
+    window.location.reload()
     console.log(data)
   }
 
   return (
     <>
-      <Header onOpen={onDrawerOpen} />
-      <DrawerComponent isOpen={isDrawerOpen} onOpen={onDrawerOpen} onClose={onDrawerClose} />
-      
+      {/* <DrawerComponent isOpen={isDrawerOpen} onOpen={onDrawerOpen} onClose={onDrawerClose} /> */}
       <ModalComponent doctors={props.data.doctors} clinics={props.data.clinics} isOpen={isModalOpen} onOpen={onModalOpen} onClose={onModalClose} />
-
-      {formData && <UpdateModal 
+      {formData && <UpdateModal
         disable={true}
         isOpen={isUpdateModalOpen}
         onOpen={onUpdateModalOpen}
         onClose={onUpdateModalClose}
         doctors={props.data.doctors}
         clinics={props.data.clinics}
-        formData={formData}     />}
+        formData={formData} />}
 
-      <OptionsBar title='Appointments List' btnName='Add Appointment' fn={onModalOpen} />
+      <OptionsBar btnName='Add Appointment' fn={onModalOpen} />
       <Spacer height='13px' />
       <TableContainer display='flex' justifyContent='center' h='100%'>
-        <Flex flexDirection='row' alignItems='center' >
           <Table variant='simple'>
             <TableCaption>Appointment List</TableCaption>
             <Thead>
@@ -120,7 +112,7 @@ export default function Home(props: Props) {
                       variant='outline'
                       colorScheme='blue'
                       aria-label='Search database'
-                      icon={<EditIcon  />}
+                      icon={<EditIcon />}
                     />
                   </Td>
                   <Td>
@@ -129,14 +121,13 @@ export default function Home(props: Props) {
                       variant='outline'
                       colorScheme='red'
                       aria-label='Search database'
-                      icon={<DeleteIcon  />}
+                      icon={<DeleteIcon />}
                     />
                   </Td>
                 </Tr>
               ))}
             </Tbody>
           </Table>
-        </Flex>
       </TableContainer>
     </>
   )
@@ -150,9 +141,11 @@ export async function getStaticProps() {
   const doctors = await doc.json();
   const clinics = await cln.json();
 
-  const data = {appointments, doctors, clinics}
+  const data = { appointments, doctors, clinics }
 
   return {
     props: { data },
   }
 }
+
+    // "typescript": "^5.0.2"

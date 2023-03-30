@@ -1,4 +1,3 @@
-import { Clinic } from '@/models/clinic';
 import { Doctor } from '@/models/doctor';
 import { Box, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, InputGroup, Input, ModalFooter, Wrap, Button } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
@@ -11,7 +10,6 @@ type Props = {
 }
 
 function UpdateModal(props: Props) {
-    const btnRef = React.useRef(null)
     const [doctor, setDoctor] = useState<Doctor>(props.doctor);
     const [newDoctor, setNewDoctor] = useState<Doctor>(props.doctor);
     const [isFormDataUpdated, setIsFormDataUpdated] = useState<boolean>(false);
@@ -53,6 +51,7 @@ function UpdateModal(props: Props) {
             });
             const data = await res.json()
             console.log(data)
+            window.location.reload()
         }
         catch (error) {
             console.log(error)
@@ -62,7 +61,6 @@ function UpdateModal(props: Props) {
     return (
         <Modal
             onClose={props.onClose}
-            finalFocusRef={btnRef}
             isOpen={props.isOpen}
         >
             <ModalOverlay />

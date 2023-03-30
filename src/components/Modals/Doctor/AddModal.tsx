@@ -9,7 +9,6 @@ type Props = {
 }
 
 function AddModal(props: Props) {
-    const btnRef = React.useRef(null)
     const [doctor, setDoctor] = useState<Doctor>({
         id: 0,
         name: '',
@@ -41,7 +40,8 @@ function AddModal(props: Props) {
             })
 
             const data = await res.json()
-            console.log("successfully added doctor", data)            
+            console.log("successfully added doctor", data)     
+            window.location.reload()       
         } catch (error) {
             
         }
@@ -49,7 +49,6 @@ function AddModal(props: Props) {
   return (
     <Modal
     onClose={props.onClose}
-    finalFocusRef={btnRef}
     isOpen={props.isOpen}
 >
     <ModalOverlay />
