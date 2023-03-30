@@ -1,14 +1,14 @@
 {
     "functions": {
-      "pages/api/appointment.ts": {
+      "pages/api/appointment.js": {
         "memory": 1024,
         "maxDuration": 10
       },
-      "pages/api/doctor.ts": {
+      "pages/api/doctor.js": {
         "memory": 1024,
         "maxDuration": 10
       },
-      "pages/api/clinic.ts": {
+      "pages/api/clinic.js": {
         "memory": 1024,
         "maxDuration": 10
       }

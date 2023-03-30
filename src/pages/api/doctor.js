@@ -1,61 +1,61 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { clinic } = req.body
-    console.log("calling api", clinic)
+export default async function handler(req, res) {
+    const { doctor } = req.body;
+    console.log("calling api", doctor)
     if (req.method === 'POST') {
-        console.log('POST req.', clinic)
+        console.log("POST method", doctor)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-doctor`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "POST",
-                    'Access-Control-Request-Headers': 'Content-Type'
+                    'Access-Control-Request-Method': "POST",
+                    'Access-Control-Request-Headers': 'Content-Type'     
                 },
-                body: JSON.stringify(clinic),
+                body: JSON.stringify(doctor),
                 mode: 'cors',
                 credentials: 'include',
             })
 
             const data = await response.json()
             return res.end(JSON.stringify(data))
-        } catch (err: any) {
+        } catch (err) {
             console.log(err)
-            return res.end(JSON.stringify({"error": err.message }))
+            return res.end(JSON.stringify({"error": err.message }))            
         }
     }
     if (req.method === 'PUT') {
-        console.log('PUT method', clinic)
+        console.log("PUT method", doctor)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-doctor/${doctor.id}`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "PUT",
-                    'Access-Control-Request-Headers': 'Content-Type'
+                    'Access-Control-Request-Method': "PUT",
+                    'Access-Control-Request-Headers': 'Content-Type'     
                 },
-                body: JSON.stringify(clinic),
                 mode: 'cors',
                 credentials: 'include',
+                body: JSON.stringify(doctor),
             })
 
             const data = await response.json()
             return res.end(JSON.stringify(data))            
-        } catch (err: any) {
+        } catch (err) {
             console.log(err)
             return res.end(JSON.stringify({"error": err.message }))
         }
     }
     if (req.method === 'DELETE') {
-        console.log('DELETE method', clinic)
+        console.log("DELETE method", doctor)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-clinic/${clinic.id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-doctor/${doctor.id}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "DELETE",
-                    'Access-Control-Request-Headers': 'Content-Type'
+                    'Access-Control-Request-Method': "DELETE",
+                    'Access-Control-Request-Headers': 'Content-Type'     
                 },
                 mode: 'cors',
                 credentials: 'include',
@@ -63,10 +63,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             const data = await response.json()
             return res.end(JSON.stringify(data))            
-        } catch (err: any) {
+        } catch (err) {
             console.log(err)
-            return res.end(JSON.stringify({"error": err.message }))            
+            return res.end(JSON.stringify({"error": err.message }))
         }
     }
-
 }

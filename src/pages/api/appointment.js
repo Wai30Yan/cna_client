@@ -1,7 +1,7 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
     const { appointment } = req.body
     console.log("calling api", appointment)
     if (req.method === 'POST') {
@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log(data)
             return res.end(JSON.stringify(data))
         }
-        catch (err: any) {
+        catch (err) {
             console.log(err)
             return res.end(JSON.stringify({"error": err.message }))
         }
@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const data = await response.json()
             console.log(data)
             return res.end(JSON.stringify(data))            
-        } catch (err: any) {
+        } catch (err) {
             console.log(err)
             return res.end(JSON.stringify({"error": err.message }))
         }
@@ -67,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const data = await response.json()
             console.log(data)
             return res.end(JSON.stringify(data))         
-        } catch (err: any) {
+        } catch (err) {
             console.log(err)
             return res.end(JSON.stringify({"error": err.message }))
         }

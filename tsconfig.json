@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/helpers", "src/pages/doctors.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/helpers", "src/pages/doctors.tsx", "src/pages/api/appointment.js", "src/pages/api/clinic.js", "src/pages/api/doctor.js"],
   "exclude": ["node_modules"]
 }
