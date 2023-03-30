@@ -65,7 +65,6 @@ export default function Home(props: Props) {
 
   return (
     <>
-      {/* <DrawerComponent isOpen={isDrawerOpen} onOpen={onDrawerOpen} onClose={onDrawerClose} /> */}
       <ModalComponent doctors={props.data.doctors} clinics={props.data.clinics} isOpen={isModalOpen} onOpen={onModalOpen} onClose={onModalClose} />
       {formData && <UpdateModal
         disable={true}
