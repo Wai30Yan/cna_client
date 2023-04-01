@@ -38,7 +38,7 @@ function Doctors(props: Props): JSX.Element {
       })
       const data = await res.json()
       console.log(data)
-      window.location.reload()
+      // window.location.reload()
     } catch (error) {
 
     }

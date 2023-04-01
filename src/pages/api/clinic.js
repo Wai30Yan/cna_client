@@ -27,7 +27,6 @@ export default async function handler(req, res) {
         }
     }
     if (req.method === 'PUT') {
-        console.log('PUT method', clinic)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, {
                 method: "PUT",

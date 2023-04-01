@@ -41,7 +41,7 @@ function AddModal(props: Props) {
 
             const data = await res.json()
             console.log("successfully added doctor", data)     
-            window.location.reload()       
+            // window.location.reload()       
         } catch (error) {
             
         }

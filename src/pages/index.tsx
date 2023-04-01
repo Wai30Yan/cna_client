@@ -59,7 +59,7 @@ export default function Home(props: Props) {
       credentials: 'include',
     })
     const data = await res.json()
-    window.location.reload()
+    // window.location.reload()
     console.log(data)
   }
 

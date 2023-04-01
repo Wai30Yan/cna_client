@@ -50,8 +50,8 @@ function UpdateModal(props: Props) {
                 credentials: 'include',
             });
             const data = await res.json()
-            console.log(data)
-            window.location.reload()
+            console.log("updated doctor", data)
+            // window.location.reload()
         }
         catch (error) {
             console.log(error)
