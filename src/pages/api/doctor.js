@@ -1,10 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
 export default async function handler(req, res) {
     const { doctor } = req.body;
-    console.log("calling api", doctor)
     if (req.method === 'POST') {
-        console.log("POST method", doctor)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-doctor`, {
                 method: "POST",
@@ -26,7 +22,6 @@ export default async function handler(req, res) {
         }
     }
     if (req.method === 'PUT') {
-        console.log("PUT method", doctor)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-doctor/${doctor.id}`, {
                 method: "PUT",
@@ -48,7 +43,6 @@ export default async function handler(req, res) {
         }
     }
     if (req.method === 'DELETE') {
-        console.log("DELETE method", doctor)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-doctor/${doctor.id}`, {
                 method: "DELETE",

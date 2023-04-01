@@ -1,11 +1,6 @@
-
-import { NextApiRequest, NextApiResponse } from "next";
-
 export default async function handler(req, res) {
     const { appointment } = req.body
-    console.log("calling api", appointment)
     if (req.method === 'POST') {
-        console.log("POST method", appointment)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-appointment'`, {
                 method: "POST",
@@ -19,7 +14,6 @@ export default async function handler(req, res) {
                 credentials: 'include',
             });
             const data = await response.json()
-            console.log(data)
             return res.end(JSON.stringify(data))
         }
         catch (err) {
@@ -29,7 +23,6 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-        console.log("PUT method", appointment)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-appointment/${appointment.id}`, {
                 method: "PUT",
@@ -43,7 +36,6 @@ export default async function handler(req, res) {
                 credentials: 'include',
             });
             const data = await response.json()
-            console.log(data)
             return res.end(JSON.stringify(data))            
         } catch (err) {
             console.log(err)
@@ -52,7 +44,6 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'DELETE') {
-        console.log("DELETE method", appointment)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-appointment/${appointment.id}`, {
                 method: "DELETE",
@@ -65,7 +56,6 @@ export default async function handler(req, res) {
                 credentials: 'include',
             });
             const data = await response.json()
-            console.log(data)
             return res.end(JSON.stringify(data))         
         } catch (err) {
             console.log(err)
