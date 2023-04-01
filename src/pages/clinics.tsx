@@ -102,7 +102,7 @@ function Clincs(props: Props) {
 export default Clincs
 
 export async function getStaticProps() {
-    const res = await fetch('http://cnaserver-production.up.railway.app/clinics');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/clinics`);
     const clinics = await res.json();
 
     return {

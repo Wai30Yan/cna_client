@@ -101,7 +101,7 @@ function Doctors(props: Props): JSX.Element {
 export default Doctors
 
 export async function getStaticProps() {
-  const res = await fetch('http://cnaserver-production.up.railway.app/doctors');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/doctors`);
   const doctors = await res.json();
 
   return {
