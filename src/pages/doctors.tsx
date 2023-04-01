@@ -1,4 +1,3 @@
-
 import AddModal from "@/components/Modals/Doctor/AddModal";
 import UpdateModal from "@/components/Modals/Doctor/UpdateModal";
 import OptionsBar from "@/components/OptionsBar";
