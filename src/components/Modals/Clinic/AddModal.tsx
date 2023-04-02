@@ -35,7 +35,7 @@ function AddModal(props: Props) {
                     'Access-Control-Request-Method': 'POST',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify({ "clinic": clinic }),
+                body: JSON.stringify(clinic),
                 mode: 'cors',
                 credentials: 'include',
             })

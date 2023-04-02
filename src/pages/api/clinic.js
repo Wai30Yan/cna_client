@@ -1,9 +1,10 @@
 // import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req, res) {
-    const { clinic } = req.body
-    clinic
+    const clinic = req.body
+
     if (req.method === 'POST') {
+        console.log(clinic)
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, {
                 method: "POST",
@@ -18,8 +19,6 @@ export default async function handler(req, res) {
             })
 
             const data = await response.json()
-            console.log(data)
-            data
             return res.end(JSON.stringify(data))
         } catch (err) {
             console.log(err)

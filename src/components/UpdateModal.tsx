@@ -111,7 +111,7 @@ function UpdateModal(props: Props) {
             });
             const data = await res.json()
             console.log(data)
-            // window.location.reload()
+            window.location.reload()
         }
         catch (error) {
             console.log(error)

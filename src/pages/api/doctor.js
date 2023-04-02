@@ -1,7 +1,8 @@
 export default async function handler(req, res) {
-    const { doctor } = req.body;
+    const doctor = req.body;
     if (req.method === 'POST') {
         try {
+            console.log(doctor)
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-doctor`, {
                 method: "POST",
                 headers: {

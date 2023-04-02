@@ -44,7 +44,7 @@ function UpdateModal(props: Props) {
                     'Access-Control-Request-Method': 'PUT',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify({ "clinic": newCln }),
+                body: JSON.stringify(newCln),
                 mode: 'cors',
                 credentials: 'include',
             });

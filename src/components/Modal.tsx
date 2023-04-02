@@ -35,7 +35,6 @@ function ModalComponent(props: Props) {
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = event.target;
         if (name === "date" || name === "from" || name === "to") {
-            console.log(name, value)
             setFormData((prevState: FormData | undefined) => ({
                 ...prevState!,
                 [name]: value,
@@ -75,8 +74,8 @@ function ModalComponent(props: Props) {
                 location: ''
             }
         }
-        
         try {
+            console.log(JSON.stringify(appointment))
             const res = await fetch('/api/appointment', {
                 method: 'POST',
                 headers: {
@@ -84,13 +83,13 @@ function ModalComponent(props: Props) {
                   'Access-Control-Request-Method': 'POST',
                   'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify({ "appointment": appointment }),
+                body: JSON.stringify(appointment),
                 mode: 'cors',
                 credentials: 'include',
             });
             const data = await res.json()
             console.log(data)
-            // window.location.reload()
+            window.location.reload()
         }
         catch (error) {
             console.log(error)

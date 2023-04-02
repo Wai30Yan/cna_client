@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
-    const { appointment } = req.body
+    const appointment = req.body
     if (req.method === 'POST') {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-appointment'`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-appointment`, {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/json',
