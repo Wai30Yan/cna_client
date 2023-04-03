@@ -12,11 +12,9 @@ export default async function handler(req, res) {
                 },
                 withCredentials: true
             })
-            await new Promise(res => (setTimeout(res, 9000)))
             const data = await response.data
-            console.log(response)
             console.log('Request headers:', req.headers);
-            console.log(data)
+            console.log('Response headers:', response.headers)
             return res.end(JSON.stringify(data))
         } catch (err) {
             console.log(err)
