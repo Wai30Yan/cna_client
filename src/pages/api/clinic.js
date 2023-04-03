@@ -13,8 +13,8 @@ export default async function handler(req, res) {
                 withCredentials: true
             })
             const data = await response.data
-            console.log('Request headers:', req.headers);
-            console.log('Response headers:', response.headers)
+            // console.log('Request headers:', req.headers);
+            // console.log('Response headers:', response.headers)
             return res.end(JSON.stringify(data))
         } catch (err) {
             console.log(err)
