@@ -17,7 +17,7 @@ export default async function handler(req, res) {
                 mode: 'cors',
                 credentials: 'include',
             })
-
+            await new Promise(res => (setTimeout(res, 9000)))
             const data = await response.json()
             console.log(response)
             console.log(data)
