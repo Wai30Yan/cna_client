@@ -37,7 +37,7 @@ function AddModal(props: Props) {
             })
             const data = await res.data
             console.log("successfully add clinic", data)
-            // window.location.reload()
+            window.location.reload()
         } catch (error) {
             console.error(error);
         }

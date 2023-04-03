@@ -80,13 +80,12 @@ function ModalComponent(props: Props) {
             const res = await axios.post('/api/appointment', appointment, {
                 headers: {
                   'Content-Type': 'application/json',
-                  'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             });
             const data = await res.data
             console.log(data)
-            // window.location.reload()
+            window.location.reload()
         }
         catch (error) {
             console.log(error)
