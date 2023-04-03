@@ -40,7 +40,6 @@ function AddModal(props: Props) {
                 mode: 'cors',
                 credentials: 'include',
             })
-            await new Promise(res => (setTimeout(res, 9000)))
             const data = await res.json()
             console.log("successfully add clinic", data)
             // window.location.reload()
