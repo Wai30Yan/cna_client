@@ -11,7 +11,6 @@ export default async function handler(req, res) {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             })
@@ -30,7 +29,6 @@ export default async function handler(req, res) {
             const response = await axios.put(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             })
@@ -50,7 +48,6 @@ export default async function handler(req, res) {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             })
