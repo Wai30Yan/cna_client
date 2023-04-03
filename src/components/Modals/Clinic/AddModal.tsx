@@ -1,5 +1,6 @@
 import { Clinic } from '@/models/clinic';
 import { Box, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, InputGroup, Input, ModalFooter, Wrap, Button } from '@chakra-ui/react'
+import { resolve } from 'path';
 
 import React, { useState } from 'react'
 
@@ -39,12 +40,12 @@ function AddModal(props: Props) {
                 mode: 'cors',
                 credentials: 'include',
             })
-
+            await new Promise(resolve => (setTimeout(resolve, 9000)))
             const data = await res.json()
             console.log("successfully add clinic", data)
             // window.location.reload()
         } catch (error) {
-            
+            console.error(error);
         }
     }
   return (
