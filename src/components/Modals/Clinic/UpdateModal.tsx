@@ -38,7 +38,7 @@ function UpdateModal(props: Props) {
 
     async function handleUpdate(): Promise<void> {
         try {
-            const res = await axios.put('/api/clinic', clinic, {
+            const res = await axios.put('/api/clinic', newCln, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

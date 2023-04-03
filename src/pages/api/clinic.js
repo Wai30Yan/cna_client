@@ -13,8 +13,6 @@ export default async function handler(req, res) {
                 withCredentials: true
             })
             const data = await response.data
-            // console.log('Request headers:', req.headers);
-            // console.log('Response headers:', response.headers)
             return res.end(JSON.stringify(data))
         } catch (err) {
             console.log(err)
@@ -22,6 +20,7 @@ export default async function handler(req, res) {
         }
     }
     if (req.method === 'PUT') {
+        console.log(clinic)
         try {
             const response = await axios.put(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, clinic, {
                 headers: {
