@@ -31,7 +31,6 @@ function AddModal(props: Props) {
             const res = await axios.post('/api/doctor', doctor, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             })

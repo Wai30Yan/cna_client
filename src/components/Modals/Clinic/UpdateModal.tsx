@@ -41,7 +41,6 @@ function UpdateModal(props: Props) {
             const res = await axios.put('/api/clinic', clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 withCredentials: true
             });
