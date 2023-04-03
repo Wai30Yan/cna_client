@@ -1,6 +1,7 @@
 import { Doctor } from '@/models/doctor';
 import { Box, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, InputGroup, Input, ModalFooter, Wrap, Button } from '@chakra-ui/react';
 import React, { useState } from 'react'
+import axios from "axios"
 
 type Props = {
     isOpen: boolean;
@@ -27,19 +28,15 @@ function AddModal(props: Props) {
     async function handleAdd(): Promise<void> {
         console.log("adding doctor", doctor)
         try {
-            const res = await fetch('/api/doctor', {
-                method: "POST",
+            const res = await axios.post('/api/doctor', doctor, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': 'POST',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(doctor),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
 
-            const data = await res.json()
+            const data = await res.data
             console.log("successfully added doctor", data)     
             // window.location.reload()       
         } catch (error) {

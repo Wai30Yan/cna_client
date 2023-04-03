@@ -3,6 +3,7 @@ import { Clinic } from '@/models/clinic';
 import { Doctor } from '@/models/doctor';
 import { Text, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Modal, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Select, Box, Card, CardBody, Heading, Wrap } from '@chakra-ui/react'
 import React, { useState } from 'react'
+import axios from "axios"
 
 type Props = {
     isOpen: boolean;
@@ -76,20 +77,16 @@ function ModalComponent(props: Props) {
         }
         try {
             console.log(JSON.stringify(appointment))
-            const res = await fetch('/api/appointment', {
-                method: 'POST',
+            const res = await axios.post('/api/appointment', appointment, {
                 headers: {
                   'Content-Type': 'application/json',
-                  'Access-Control-Request-Method': 'POST',
                   'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(appointment),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             });
-            const data = await res.json()
+            const data = await res.data
             console.log(data)
-            window.location.reload()
+            // window.location.reload()
         }
         catch (error) {
             console.log(error)

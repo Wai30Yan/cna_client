@@ -1,24 +1,22 @@
 // import { NextApiRequest, NextApiResponse } from "next";
 
+import axios from "axios"
+
 export default async function handler(req, res) {
     const clinic = req.body
 
     if (req.method === 'POST') {
         console.log(clinic)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, {
-                method: "POST",
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "POST",
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(clinic),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
             await new Promise(res => (setTimeout(res, 9000)))
-            const data = await response.json()
+            const data = await response.data
             console.log(response)
             console.log(data)
             return res.end(JSON.stringify(data))
@@ -29,19 +27,15 @@ export default async function handler(req, res) {
     }
     if (req.method === 'PUT') {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, {
-                method: "PUT",
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_URL}/admin/update-clinic/${clinic.id}`, clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "PUT",
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(clinic),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
 
-            const data = await response.json()
+            const data = await response.data
             console.log(data)
             return res.end(JSON.stringify(data))            
         } catch (err) {
@@ -52,18 +46,16 @@ export default async function handler(req, res) {
     if (req.method === 'DELETE') {
         console.log('DELETE method', clinic)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-clinic/${clinic.id}`, {
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_URL}/admin/delete-clinic/${clinic.id}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-req.': "DELETE",
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
 
-            const data = await response.json()
+            const data = await response.data
             console.log(data)
             return res.end(JSON.stringify(data))            
         } catch (err) {

@@ -3,6 +3,7 @@ import { Clinic } from '@/models/clinic';
 import { Doctor } from '@/models/doctor';
 import { Text, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Modal, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Select, Box, Card, CardBody, Heading, Wrap } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
+import axios from "axios"
 
 type Props = {
     isOpen: boolean;
@@ -98,18 +99,14 @@ function UpdateModal(props: Props) {
         console.log(newFormData, appointment)
 
         try {
-            const res = await fetch('/api/appointment', {
-                method: 'PUT',
+            const res = await axios.put('/api/appointment', appointment, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': 'PUT',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify({ "appointment": appointment }),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             });
-            const data = await res.json()
+            const data = await res.data
             console.log(data)
             window.location.reload()
         }

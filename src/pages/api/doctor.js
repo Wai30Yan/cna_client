@@ -1,21 +1,18 @@
+import axios from "axios"
+
 export default async function handler(req, res) {
     const doctor = req.body;
     if (req.method === 'POST') {
         try {
             console.log(doctor)
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/create-doctor`, {
-                method: "POST",
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_URL}/admin/create-doctor`, doctor, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': "POST",
                     'Access-Control-Request-Headers': 'Content-Type'     
                 },
-                body: JSON.stringify(doctor),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
-
-            const data = await response.json()
+            const data = await response.data
             console.log(response)
             console.log(data)
             return res.end(JSON.stringify(data))
@@ -26,19 +23,15 @@ export default async function handler(req, res) {
     }
     if (req.method === 'PUT') {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/update-doctor/${doctor.id}`, {
-                method: "PUT",
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_URL}/admin/update-doctor/${doctor.id}`, doctor, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': "PUT",
                     'Access-Control-Request-Headers': 'Content-Type'     
                 },
-                mode: 'cors',
-                credentials: 'include',
-                body: JSON.stringify(doctor),
+                withCredentials: true
             })
 
-            const data = await response.json()
+            const data = await response.data
             console.log(response)
             console.log(data)
             return res.end(JSON.stringify(data))            
@@ -49,18 +42,15 @@ export default async function handler(req, res) {
     }
     if (req.method === 'DELETE') {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/admin/delete-doctor/${doctor.id}`, {
-                method: "DELETE",
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_URL}/admin/delete-doctor/${doctor.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': "DELETE",
                     'Access-Control-Request-Headers': 'Content-Type'     
                 },
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
 
-            const data = await response.json()
+            const data = await response.data
             console.log(response)
             console.log(data)
             return res.end(JSON.stringify(data))            

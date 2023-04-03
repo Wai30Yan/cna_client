@@ -1,6 +1,6 @@
 import { Clinic } from '@/models/clinic';
 import { Box, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, InputGroup, Input, ModalFooter, Wrap, Button } from '@chakra-ui/react'
-import { resolve } from 'path';
+import axios from "axios"
 
 import React, { useState } from 'react'
 
@@ -29,18 +29,14 @@ function AddModal(props: Props) {
     async function handleAdd(): Promise<void> {
         try {
             console.log("adding", clinic)
-            const res = await fetch('/api/clinic', {
-                method: "POST",
+            const res = await axios.post('/api/clinic', clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': 'POST',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(clinic),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             })
-            const data = await res.json()
+            const data = await res.data
             console.log("successfully add clinic", data)
             // window.location.reload()
         } catch (error) {

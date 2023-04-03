@@ -1,6 +1,7 @@
 import { Clinic } from '@/models/clinic';
 import { Box, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, InputGroup, Input, ModalFooter, Wrap, Button } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
+import axios from "axios"
 
 type Props = {
     isOpen: boolean;
@@ -37,18 +38,14 @@ function UpdateModal(props: Props) {
 
     async function handleUpdate(): Promise<void> {
         try {
-            const res = await fetch('/api/clinic', {
-                method: 'PUT',
+            const res = await axios.put('/api/clinic', clinic, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Request-Method': 'PUT',
                     'Access-Control-Request-Headers': 'Content-Type'
                 },
-                body: JSON.stringify(newCln),
-                mode: 'cors',
-                credentials: 'include',
+                withCredentials: true
             });
-            const data = await res.json()
+            const data = await res.data
             console.log("updated clinic",data)
             // window.location.reload()
         }
