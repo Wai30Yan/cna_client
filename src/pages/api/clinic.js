@@ -4,9 +4,7 @@ import axios from "axios"
 
 export default async function handler(req, res) {
     const clinic = req.body
-
     if (req.method === 'POST') {
-        console.log(clinic)
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_URL}/admin/create-clinic`, clinic, {
                 headers: {
@@ -17,6 +15,7 @@ export default async function handler(req, res) {
             await new Promise(res => (setTimeout(res, 9000)))
             const data = await response.data
             console.log(response)
+            console.log('Request headers:', req.headers);
             console.log(data)
             return res.end(JSON.stringify(data))
         } catch (err) {
